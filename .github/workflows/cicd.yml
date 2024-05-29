@@ -24,4 +24,4 @@ jobs:
       - name: delete old container
         run: docker rm -f cryptoContainer
       - name: run docker container
-        run: docker run -d -p 4100:4100 --name cryptoContainer muskan04yadav/crypto-app
+        run: docker run -d -p 3000:3000 --name cryptoContainer muskan04yadav/crypto-app
