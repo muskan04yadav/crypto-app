@@ -1,0 +1,27 @@
+name: CICD
+on:
+   push:
+     branches: main
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: checkout the source code
+        uses: actions/checkout@v3
+      - name: login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD}}
+      - name: Build docker image
+        run: docker build -t muskan04yadav/crypto-app .
+      - name: publish image to docker hub
+        run: docker push muskan04yadav/crypto-app:latest
+  deploy: 
+    needs: build
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: pull image from dockerhub
+        run: docker pull muskan04yadav/crypto-app:latest
+      - name: delete old container
+        run: docker rm -f cryptoContainer
+      - name: run docker container
+        run: docker run -d -p 4100:4100 --name cryptoContainer muskan04yadav/crypto-app
