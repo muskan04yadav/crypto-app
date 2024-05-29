@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: [ubuntu-latest]
+    runs-on: self-hosted
     steps:
       - name: checkout the source code
         uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
         run: docker push muskan04yadav/crypto-app:latest
   deploy: 
     needs: build
-    runs-on: [ubuntu-latest]
+    runs-on: self-hosted
     steps:
       - name: pull image from dockerhub
         run: docker pull muskan04yadav/crypto-app:latest
