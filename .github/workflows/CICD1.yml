@@ -23,7 +23,7 @@ jobs:
 
     needs: build
     runs-on: self-hosted
-    
+
     steps:
       - name: pull image from dockerhub
         run: docker pull muskan04yadav/crypto-app:latest
