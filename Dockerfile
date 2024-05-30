@@ -1,7 +1,7 @@
 FROM node:alpine3.18 as build
 WORKDIR /app
 COPY package.json .
-RUN npx update-browserslist-db@latest && npm install -g npm@10.8.1
+RUN npm install
 COPY . .
 RUN npm run build
 
