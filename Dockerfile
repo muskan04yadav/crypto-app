@@ -1,7 +1,7 @@
 FROM node:alpine3.18 as build
 WORKDIR /app
 COPY package.json .
-RUN npm install
+RUN npx browserslist@latest --update-db && npm install
 COPY . .
 RUN npm run build
 
